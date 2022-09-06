@@ -18,11 +18,13 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'normalize.css/normalize.css'
+    'normalize.css/normalize.css',
+    '@/assets/scss/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '@/plugins/vuex-persist.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -32,8 +34,13 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxt/postcss8'
+    '@nuxt/postcss8',
+    '@nuxtjs/style-resources'
   ],
+
+  styleResources: {
+    scss: ['@/assets/scss/main.scss']
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -76,6 +83,13 @@ export default {
     },
     autoLogout: true,
     watchLoggedIn: true
+  },
+  storybook: {
+    addons: [
+      '@storybook/addon-controls',
+      // '@storybook/addon-notes',
+      '@storybook/addon-docs',
+    ]
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

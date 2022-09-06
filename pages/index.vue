@@ -12,15 +12,15 @@
 <script>
 export default {
   name: 'PageIndex',
+  middleware ({ $auth, redirect }) {
+    if ($auth.$state.loggedIn) {
+      return redirect('/logado')
+    }
+  },
   data () {
     return {
       user: 'mauriciodantas',
       password: 'dantas123'
-    }
-  },
-  middleware ({ $auth, redirect }) {
-    if ($auth.$state.loggedIn) {
-      return redirect('/logado')
     }
   },
   methods: {
@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .index {
   width: 100%;
   height: 100vh;
@@ -43,26 +43,25 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fceacd;
-}
+  background-color: $cor1;
 
-.index__input {
-  padding: 8px;
-  width: 300px;
-  margin-bottom: 16px;
-}
+  &__input {
+    padding: 8px;
+    width: 300px;
+    margin-bottom: 16px;
+  }
 
-.index__submit {
-  min-width: 300px;
-  padding: 8px;
-  cursor: pointer;
-  color: #fff;
-  background-color: #007bff;
-}
+  &__submit {
+    min-width: 300px;
+    padding: 8px;
+    cursor: pointer;
+    color: #fff;
+    background-color: $cor2;
+  }
 
-.index__input,
-.index__submit {
-  border: none;
-  border-radius: 5px;
+  &__input, &__submit {
+    border: none;
+    border-radius: 5px;
+  }
 }
 </style>
